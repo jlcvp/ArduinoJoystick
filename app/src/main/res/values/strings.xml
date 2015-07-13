@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ArduinoController</string>
+
+    <string name="title_section1">Controle</string>
+    <string name="title_section2">Console de comando</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">RESET</string>
+
+    <string name="action_settings">Configurações</string>
+</resources>

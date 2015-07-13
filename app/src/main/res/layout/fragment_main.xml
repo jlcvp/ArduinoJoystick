@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <RelativeLayout
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp">
+
+        <ImageButton
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:id="@+id/btn_up"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_keyboard_arrow_up_black_36dp" />
+
+        <ImageButton
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:id="@+id/btn_down"
+            android:layout_below="@+id/btn_up"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_keyboard_arrow_down_black_36dp"/>
+
+        <ImageButton
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:minWidth="@dimen/btn_size"
+            android:id="@+id/btn_left"
+            android:layout_alignBottom="@+id/btn_down"
+            android:layout_toLeftOf="@+id/btn_down"
+
+            android:src="@drawable/ic_keyboard_arrow_left_black_36dp" />
+
+        <ImageButton
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:id="@+id/btn_right"
+            android:layout_alignBottom="@+id/btn_down"
+            android:layout_toRightOf="@+id/btn_down"
+            android:layout_toEndOf="@+id/btn_down"
+            android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:id="@+id/btn_action1"
+                android:src="@drawable/ic_change_history_black_36dp"/>
+
+            <ImageButton
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:id="@+id/btn_action2"
+                android:src="@drawable/ic_close_black_36dp"/>
+
+            <ImageButton
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:id="@+id/btn_action3"
+                android:src="@drawable/ic_crop_din_black_36dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:id="@+id/btn_action4"
+                android:src="@drawable/ic_panorama_fish_eye_black_36dp"/>
+
+            <ImageButton
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:id="@+id/btn_action5"
+                android:src="@drawable/ic_cake_black_36dp" />
+
+            <ImageButton
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:id="@+id/btn_action6"
+                android:src="@drawable/ic_time_to_leave_black_36dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
