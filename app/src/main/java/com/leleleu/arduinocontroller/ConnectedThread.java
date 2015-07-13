@@ -18,11 +18,23 @@ public class ConnectedThread extends Thread {
     private static final String TAG = "bluetooth2";
 
     private Handler handler;
-
+    private static ConnectedThread instance=null;
 
     private StringBuilder sb;
 
-    public ConnectedThread(BluetoothSocket socket, Handler handler) {
+
+    public static ConnectedThread getInstance()
+    {
+       return instance;
+    }
+
+    public static ConnectedThread setup(BluetoothSocket socket, Handler handler)
+    {
+        instance = new ConnectedThread(socket,handler);
+        return instance;
+    }
+
+    private ConnectedThread(BluetoothSocket socket, Handler handler) {
         InputStream tmpIn = null;
         OutputStream tmpOut = null;
         this.sb = new StringBuilder();

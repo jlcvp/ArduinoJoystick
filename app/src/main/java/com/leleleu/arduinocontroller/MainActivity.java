@@ -1,6 +1,7 @@
 package com.leleleu.arduinocontroller;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+    private BluetoothAdapter btAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,17 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
+
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
 
     }
 
@@ -131,7 +145,7 @@ public class MainActivity extends ActionBarActivity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        View.OnTouchListener otl;
+
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -146,7 +160,6 @@ public class MainActivity extends ActionBarActivity
         }
 
         public PlaceholderFragment() {
-             otl = this;
         }
 
         @Override
