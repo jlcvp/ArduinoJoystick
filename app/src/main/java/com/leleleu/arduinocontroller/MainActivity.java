@@ -1,19 +1,24 @@
 package com.leleleu.arduinocontroller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.ToggleButton;
 
 
 public class MainActivity extends ActionBarActivity
@@ -126,6 +131,8 @@ public class MainActivity extends ActionBarActivity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+        View.OnTouchListener otl;
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -139,27 +146,132 @@ public class MainActivity extends ActionBarActivity
         }
 
         public PlaceholderFragment() {
+             otl = this;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            setListeners(rootView);
             return rootView;
         }
+
+        private void setListeners(View rootView) {
+
+            if(rootView instanceof ViewGroup) {
+                ViewGroup vg = ((ViewGroup)rootView);
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    setListeners(vg.getChildAt(i));
+                }
+            }
+            else
+            {
+                rootView.setOnTouchListener(this);
+            }
+
+        }
+
+
+
 
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+
         }
 
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            char sendInfo = 0;
+            boolean coisado = true;
+            boolean bt=false;
 
-            return false;
+            if(event.getAction() == MotionEvent.ACTION_DOWN || event.getAction()==MotionEvent.ACTION_UP) {
+                switch (v.getId()) {
+                    case R.id.btn_up:
+                        sendInfo = getKey('U', event);
+
+                        break;
+                    case R.id.btn_down:
+                        sendInfo = getKey('D', event);
+                        break;
+
+                    case R.id.btn_left:
+                        sendInfo = getKey('L', event);
+
+                        break;
+
+                    case R.id.btn_right:
+                        sendInfo = getKey('R', event);
+
+                        break;
+
+                    case R.id.btn_action1:
+                        sendInfo = getKey('F', event);
+
+                        break;
+                    case R.id.btn_action2:
+                        sendInfo = getKey('G', event);
+
+                        break;
+                    case R.id.btn_action3:
+                        sendInfo = getKey('H', event);
+
+                        break;
+                    case R.id.btn_action4:
+                        sendInfo = getKey('I', event);
+
+                        break;
+                    case R.id.btn_action5:
+                        sendInfo = getKey('J', event);
+
+                        break;
+                    case R.id.btn_action6:
+                        sendInfo = getKey('K', event);
+
+                        break;
+                    case R.id.toggleBluetooth:
+                        if (event.getAction() == MotionEvent.ACTION_DOWN)
+                            ((ToggleButton) v).setChecked(!((ToggleButton) v).isChecked());
+                        break;
+
+                    default:
+                        coisado = false;
+
+                }
+            }else {
+                coisado = false;
+            }
+
+            if(coisado)
+            {
+                Log.i("DEGUG","Touch");
+                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(50);
+            }
+
+
+            return coisado;
+        }
+
+        private char getKey(char c, MotionEvent event) {
+            char ret = c;
+            switch (event.getAction()){
+                case MotionEvent.ACTION_DOWN: //return minuscula
+                    ret+=32;
+                    break;
+                case MotionEvent.ACTION_UP: //return maiúscula
+                    ret=c;
+                    break;
+                default:
+                    ret=0;
+            }
+            return ret;
         }
     }
 
